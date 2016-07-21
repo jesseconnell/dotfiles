@@ -115,6 +115,9 @@ export EDITOR=vim
 # Customization
 # ========================================
 # source a custom local bash configuration if one exists
-if [ -f ~/.bash_local ]; then
-    . ~/.bash_local
+if [ -d ~/.bash_local ]; then
+    for FILE in $HOME/.bash_local/*.sh
+    do
+        . $FILE
+    done
 fi

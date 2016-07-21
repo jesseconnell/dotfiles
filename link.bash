@@ -30,6 +30,7 @@ function get_link_path() {
 
 function get_target_for_file() {
     echo $(to_breadcrumbs $1)dotfiles/$1
+    echo $(to_breadcrumbs $1)dotfiles/$1 >> ~/log.txt
 }
 
 function create_link() {
@@ -40,6 +41,7 @@ function create_link() {
     echo LINKING ${FILENAME}
     mkdir -p ../$(dirname ${FILENAME})
     ln -s ${TARGET} ${LINKNAME}
+    echo "ln -s ${TARGET} ${LINKNAME}"
 }
 
 function backup_file() {
@@ -50,14 +52,15 @@ function backup_file() {
     cp ${FILENAME} ${BACKUP_NAME}
 }
 
-LINKED_FILES=".bashrc .bash_profile .bash_completion .gitconfig .git_template .tmux.conf .vimrc .gvimrc .ghci bin/*"
-COPIED_FILES=".cabal/config"
+LINKED_FILES=".bashrc .bash_local .bash_profile .bash_completion .gitconfig .git_template .tmux.conf .vimrc .gvimrc .ghci bin/*"
+COPIED_FILES=".cabal/config .vim/colors/xoria256.vim"
 
 chmod u+x bin/*
 
 for file in $LINKED_FILES; do
-
+    echo $file
     TARGET=$(to_breadcrumbs $file)dotfiles/$file
+    echo $TARGET
     LINKNAME=../$file
     CREATE_LINK=0
 
@@ -98,20 +101,20 @@ for file in $COPIED_FILES; do
     fi
 done
 
-# Bootstrap vim
-if [[ ! -e "${HOME}/.vim/bundle/neobundle.vim" ]]; then
-    echo "BOOTSTRAPPING vim"
-    mkdir -p ~/.vim/bundle
-    git clone git://github.com/Shougo/neobundle.vim ${HOME}/.vim/bundle/neobundle.vim
-fi
-
-# Fix cabal config paths
-CABAL_CONFIG_FILE="${HOME}/.cabal/config"
-if [[ -e "${CABAL_CONFIG_FILE}" ]]; then
-    echo "FIXING cabal config paths"
-    backup_file ${CABAL_CONFIG_FILE}
-    sed -i"" -e "s!\~!${HOME}!" ${CABAL_CONFIG_FILE}
-fi
+## Bootstrap vim
+#if [[ ! -e "${HOME}/.vim/bundle/neobundle.vim" ]]; then
+#    echo "BOOTSTRAPPING vim"
+#    mkdir -p ~/.vim/bundle
+#    git clone git://github.com/Shougo/neobundle.vim ${HOME}/.vim/bundle/neobundle.vim
+#fi
+#
+## Fix cabal config paths
+#CABAL_CONFIG_FILE="${HOME}/.cabal/config"
+#if [[ -e "${CABAL_CONFIG_FILE}" ]]; then
+#    echo "FIXING cabal config paths"
+#    backup_file ${CABAL_CONFIG_FILE}
+#    sed -i"" -e "s!\~!${HOME}!" ${CABAL_CONFIG_FILE}
+#fi
 
 # Fix warning from ghci complaining it is writable
 chmod g-w .ghci
