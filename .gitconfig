@@ -24,10 +24,10 @@
 # ========
 # Use info
 [user]
-    name = Alexander Kondratskiy
-    email = kholdstare0.0@gmail.com
+    name = Jesse Connell
+    email = jesseconnell.git@gmail.com
 [github]
-    user = KholdStare
+    user = Jesse Connell
 
 # ========
 # suggested settings by qt project from http://qt-project.org/wiki/Setting-up-Gerrit
