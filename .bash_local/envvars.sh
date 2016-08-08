@@ -1,0 +1,3 @@
+export GTEST_COLOR=1
+export CTEST_OUTPUT_ON_FAILURE=1
+

@@ -1,0 +1,28 @@
+[global_config]
+  focus = system
+  inactive_color_offset = 0.9
+[keybindings]
+  go_down = <Primary><Shift>j
+  go_left = <Primary><Shift>h
+  go_next = <Primary>Tab
+  go_prev = <Primary><Shift>Tab
+  go_right = <Primary><Shift>l
+  go_up = <Primary><Shift>k
+  new_tab = <Primary><Shift>n
+  next_tab = <Primary>Page_Down
+  prev_tab = <Primary>Page_Up
+  reset_clear = <Primary>k
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_image = None
+    scrollback_lines = 5000

@@ -52,7 +52,7 @@ function backup_file() {
     cp ${FILENAME} ${BACKUP_NAME}
 }
 
-LINKED_FILES=".bashrc .bash_local .bash_profile .bash_completion .gitconfig .git_template .tmux.conf .vimrc .gvimrc .ghci bin/*"
+LINKED_FILES=".bashrc .bash_local .bash_profile .bash_completion .gitconfig .git_template .tmux.conf .vimrc .gvimrc .ghci bin/* .config/terminator/config"
 COPIED_FILES=".cabal/config .vim/colors/xoria256.vim"
 
 chmod u+x bin/*
