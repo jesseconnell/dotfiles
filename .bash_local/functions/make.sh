@@ -9,7 +9,7 @@ function make()
         echo "arg1 is $1"
         if [ "$1" ==  "test" ]
         then
-            $ENVMAKE && $ENVMAKE test
+            $ENVMAKE && ctest -V
             return $?
         fi
     fi
